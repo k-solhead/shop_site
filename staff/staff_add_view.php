@@ -7,11 +7,31 @@
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-  <div class="alart">
+<?php if(count($errs)) {
+  echo '<div class="alert">';
+  foreach($errs as $err) {
+    echo '<p>'.$err.'</p>';
+  }
+} else {
+  echo '<div></div>';
+}
+?>
+  </div>
   <section class="section">
     <div class="section_inner">
+      <h1>スタッフ一覧</h1>
+      <table border="1">
+        <tr><th>番号</th><th>名前</th></tr>
+        <?php foreach($data as $row): ?>
+        <tr>
+          <td><?php echo $row['code']; ?></td>
+          <td><?php echo html_escape($row['name']); ?></td>
+        </tr>
+        <?php endforeach; ?>
+      </table>
+
       <h1>スタッフ追加</h1>
-      <form action="staff_add_check.php" method="post">
+      <form action="" method="post">
         
         <p>スタッフ名を入力してください(15文字まで)</p>
         <p><input type="text" name="name"></p>
