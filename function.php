@@ -32,6 +32,15 @@ function get_db_connect() {
   return $dbh;
 }
 
+// スタッフを新規登録する
+function add_staff($dbh, $name, $password) {
+  $sql = "INSERT INTO mst_staff (name, password) VALUES (:name, :password)";
+  $stmt = $dbh->prepare($sql);
+  $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+  $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+  $stmt->execute();
+}
+
 //　全スタッフを取得する
 function select_staff($dbh) {
   $data = [];
