@@ -20,6 +20,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   if(!($staff_pass === $staff_pass1)) {
     $errs[] = 'パスワードが一致しません';
   }
+
+  if(count($errs) === 0) {
+    add_staff($dbh, $staff_name, $staff_pass);
+  }
 }
 
 // 全スタッフのデータ取得
